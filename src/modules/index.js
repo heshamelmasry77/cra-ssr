@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import notification from './notification';
+import pages from './pages';
 
 export default combineReducers({
   routing: routerReducer,
-  notification
+  pages
 });

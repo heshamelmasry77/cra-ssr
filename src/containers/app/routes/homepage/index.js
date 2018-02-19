@@ -2,24 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Page from '../../components/page';
-import { addNotification } from '../../../../modules/notification';
+
+import { getHomepage } from '../../../../modules/pages';
 
 class Homepage extends Component {
+  componentDidMount() {
+    this.props.getHomepage();
+  }
+
   render() {
+    const { content } = this.props;
+
     return (
-      <Page title="Homepage" id="homepage">
-        <h1>Welcome to our beautiful homepage</h1>
-        <button
-          onClick={() => this.props.addNotification({ text: 'this is great' })}
-        >
-          Add notification
-        </button>
+      <Page title={content || 'Homepage'} id="homepage">
+        <h1>Home</h1>
+        {content}
       </Page>
     );
   }
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addNotification }, dispatch);
+const mapStateToProps = state => ({
+  content: state.pages.home
+});
 
-export default connect(null, mapDispatchToProps)(Homepage);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getHomepage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
