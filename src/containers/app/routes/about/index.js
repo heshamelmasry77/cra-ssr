@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { withWrapper } from 'create-react-server/wrapper';
 import Page from '../../components/page';
 
 import { getAbout } from '../../../../modules/pages';
 
 class About extends Component {
-  componentDidMount() {
-    this.props.getAbout();
+  static async getInitialProps(props) {
+    await props.store.dispatch(getAbout());
   }
 
   render() {
@@ -26,7 +26,4 @@ const mapStateToProps = state => ({
   content: state.pages.about
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getAbout }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default withWrapper(connect(mapStateToProps, null)(About));

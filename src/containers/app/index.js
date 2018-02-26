@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withWrapper } from 'create-react-server/wrapper';
+import { Link, Route, Switch } from 'react-router-dom';
 
 // Routes
-import Routes from './routes';
+import Homepage from './routes/homepage';
+import About from './routes/about';
+import NotFound from './routes/not-found';
 
 class App extends Component {
   render() {
@@ -19,10 +22,15 @@ class App extends Component {
             <Link to="/something">A broken page link</Link>
           </li>
         </ul>
-        <Routes />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/about" component={About} />
+
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withWrapper(App);
