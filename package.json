@@ -8,16 +8,17 @@
     "babel-preset-env": "^1.6.0",
     "express": "^4.16.2",
     "ignore-styles": "^5.0.1",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.0.1",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
-    "react-scripts": "1.0.14",
+    "react-scripts": "3.0.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "snyk": "^1.305.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,6 +26,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "serve": "NODE_ENV=development node server/index.js",
-    "deploy": "NODE_ENV=production node server/index.js"
-  }
+    "deploy": "NODE_ENV=production node server/index.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
